@@ -23,18 +23,19 @@ function App() {
         Authorization: `Bearer ${token}` }
     };
     
+    try {
     // send request to bitly
-    await axios.post('https://api-ssl.bitly.com/v4/shorten', { 
-      "long_url": longUrl 
-    }, config)
-    .then((response) => {
+      const response = await axios.post('https://api-ssl.bitly.com/v4/shorten', { 
+        "long_url": longUrl 
+      }, config)
+
       return updateShortUrl(response.data.link);
-    })
-    .catch((err) => {
+    }
+    catch(err) {
       console.log(err)
       const errorLog = `Error Code: ${err.response.status} - ${err.response.data.description}`
       return updateShortUrl(errorLog)
-    })
+    }
   }
 
   return (
@@ -46,7 +47,7 @@ function App() {
 
       <form onSubmit={handleSubmit}>
         <input onChange={(e) => updateInput(e.target.value)} value={inputUrl}/>
-        <button disabled={inputUrl.length === 0} type="submit" >Submit</button>
+        <button disabled={inputUrl.length === 0} type="submit">Submit</button>
       </form>
 
       {shortUrl && displayShortUrl(shortUrl)}
