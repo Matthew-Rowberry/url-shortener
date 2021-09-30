@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import './App.scss';
-const axios = require('axios')
+const axios = require('axios');
 
 function App() {
-  const [inputUrl, updateInput] = useState("")
-  const [shortUrl, updateShortUrl] = useState("")
+  const [inputUrl, updateInput] = useState("");
+  const [shortUrl, updateShortUrl] = useState("");
 
 
   function handleSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
     //send input url to api
-    sendUrl(inputUrl)
+    sendUrl(inputUrl);
   };
 
   async function sendUrl(longUrl) {
@@ -32,9 +32,9 @@ function App() {
       return updateShortUrl(response.data.link);
     }
     catch(err) {
-      console.log(err)
-      const errorLog = `Error Code: ${err.response.status} - ${err.response.data.description}`
-      return updateShortUrl(errorLog)
+      console.log(err);
+      const errorLog = `Error Code: ${err.response.status} - ${err.response.data.description}`;
+      return updateShortUrl(errorLog);
     }
   }
 
