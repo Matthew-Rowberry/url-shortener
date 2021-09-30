@@ -11,7 +11,7 @@ function App() {
     e.preventDefault()
     //send input url to api
     sendUrl(inputUrl)
-  }
+  };
 
   async function sendUrl(longUrl) {
     const token = '2b07d6efc3191a9524120a2999b7bc37a7143fd4';
@@ -53,7 +53,7 @@ function App() {
       {shortUrl && displayShortUrl(shortUrl)}
     </div>
   );
-}
+};
 
 function displayShortUrl(shortUrl) {
   return (
@@ -62,6 +62,6 @@ function displayShortUrl(shortUrl) {
       <p>{shortUrl}</p>
     </div>
   )
-}
+};
 
 export default App;
