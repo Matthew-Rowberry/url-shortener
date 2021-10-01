@@ -12,7 +12,7 @@ function App() {
     e.preventDefault();
     //send input url to api
     sendUrl(inputUrl);
-  };
+  }
 
   function clearState() {
     updateInput("");
@@ -77,6 +77,6 @@ function App() {
       </div>
     </div>
   );
-};
+}
 
 export default App;
