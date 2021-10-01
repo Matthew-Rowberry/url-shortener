@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
+import Response from './components/response';
+
 const axios = require('axios');
 
 function App() {
@@ -15,11 +17,6 @@ function App() {
   function clearState() {
     updateInput("");
     updateShortUrl({status: "", description: ""});
-  }
-
-  function clickToCopy(){
-    if(shortUrl.status <= 200 && shortUrl.status > 300) return;
-    navigator.clipboard.writeText(shortUrl.message);
   }
 
   async function sendUrl(longUrl) {
@@ -52,7 +49,7 @@ function App() {
     }
   }
 
-  let success = shortUrl?.status >= 200 && shortUrl?.status < 300;
+  const success = shortUrl?.status >= 200 && shortUrl?.status < 300;
   return (
     <div className="App">
 
@@ -71,15 +68,11 @@ function App() {
             <button className="btn" disabled={inputUrl.length === 0} type="submit">Submit</button>
           </form>
         :
-          <>
-            <div className={`boxed ${success && "click"}`} onClick={() => clickToCopy()}>
-              <p>Response <span className={success ? "success" : "failed"}>({shortUrl.status})</span>:</p>
-              <p>{shortUrl.message}</p>
-              {success && <p className="subText">(Click to copy)</p>}
-            </div>
-  
-            <button className="btn" onClick={() => clearState()}>Shorten Another!</button>
-          </>  
+            <Response 
+              shortUrl={shortUrl}
+              success={success}
+              clearState={clearState}
+            />  
         }        
       </div>
     </div>
